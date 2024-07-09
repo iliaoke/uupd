@@ -15,5 +15,6 @@ jobs:
        aria2c https://github.com/liaoke01/uupd/blob/main/1.zip
     - name: finish
       run: |
+       tree
        unzip 1.zip
        tree
