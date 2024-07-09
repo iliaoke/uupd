@@ -10,6 +10,7 @@ jobs:
     steps:
     - name: Set up 
       run: |
+       sudo apt update
        sudo apt install aria2 tree unzip
 
 
@@ -20,4 +21,4 @@ jobs:
       run: |
        cd ./1
        chmod 777 uup_download_linux.sh
-       ./uup_download_linux.sh
+       sudo sh uup_download_linux.sh
