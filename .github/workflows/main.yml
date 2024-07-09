@@ -10,7 +10,6 @@ jobs:
     steps:
     - name: Set up 
       run: |
-       sudo apt update
        sudo apt install aria2 tree unzip
 
 
