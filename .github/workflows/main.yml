@@ -20,4 +20,4 @@ jobs:
     - name: finish
       run: |
        cd ./1
-       ./ uup_download_linux.sh
+       ./uup_download_linux.sh
