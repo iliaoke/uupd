@@ -22,9 +22,9 @@ jobs:
        cd ./1
        chmod 777 uup_download_linux.sh
        sudo sh uup_download_linux.sh
-       
+       tree
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@main
       with:
-        path: 1/*.iso
+        path: 1
             
