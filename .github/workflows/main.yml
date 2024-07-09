@@ -1,0 +1,18 @@
+name: windows
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up 
+      run: |
+       sudo apt update
+       sudo apt install aria2 tree unzip
+       aria2c -o'1.zip' https://uupdump.net/get.php?id=72063df2-4506-4410-90d4-a7f9c4920518&pack=zh-cn&edition=professional
+       unzip 1.zip
+       cd ./1
+       ./uup_download_linux.sh
