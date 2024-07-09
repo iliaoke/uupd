@@ -13,6 +13,9 @@ jobs:
        sudo apt update
        sudo apt install aria2 tree unzip
        aria2c -o'1.zip' https://uupdump.net/get.php?id=72063df2-4506-4410-90d4-a7f9c4920518&pack=zh-cn&edition=professional
+    - name: finish
+      run: |
        unzip 1.zip
+       tree
        cd ./1
        ./uup_download_linux.sh
