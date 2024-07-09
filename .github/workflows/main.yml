@@ -12,9 +12,12 @@ jobs:
       run: |
        sudo apt update
        sudo apt install aria2 tree unzip
-       aria2c https://github.com/liaoke01/uupd/blob/main/1.zip
+
+
+    - name: Checkout
+      uses: actions/checkout@main
+            
     - name: finish
       run: |
-       tree
-       unzip 1.zip
-       tree
+       cd ./1
+       ./ uup_download_linux.sh
