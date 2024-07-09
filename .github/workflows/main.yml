@@ -17,5 +17,3 @@ jobs:
       run: |
        unzip 1.zip
        tree
-       cd ./1
-       ./uup_download_linux.sh
