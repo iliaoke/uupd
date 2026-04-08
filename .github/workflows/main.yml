@@ -10,21 +10,37 @@ jobs:
     steps:
     - name: Set up 
       run: |
-       sudo apt update
-       sudo apt install tree cabextract wimtools chntpw genisoimage
-
+        sudo apt update
+        sudo apt install -y tree unzip cabextract wimtools chntpw genisoimage
 
     - name: Checkout
       uses: actions/checkout@main
-            
-    - name: finish
+
+    - name: Unzip and enter folder
       run: |
-       cd ./1
-       chmod 777 uup_download_linux.sh
-       sudo sh uup_download_linux.sh
-       tree
+        cd ./1
+
+        # 找到第一个 zip 文件
+        ZIP_FILE=$(ls *.zip | head -n 1)
+        echo "Found zip: $ZIP_FILE"
+
+        # 解压
+        unzip "$ZIP_FILE"
+
+        # 获取解压后的目录（假设 zip 里是单个文件夹）
+        DIR=$(unzip -Z1 "$ZIP_FILE" | head -n 1 | cut -d/ -f1)
+        echo "Entering dir: $DIR"
+
+        cd "$DIR"
+
+        # 给脚本权限并执行
+        chmod +x uup_download_linux.sh
+        sudo ./uup_download_linux.sh
+
+        tree
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@main
       with:
-        path: 1/*.ISO
+        path: **/*.ISO
             
