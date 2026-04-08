@@ -1,6 +1,6 @@
 name: windows
 
-于:
+on:
   push:
   workflow_dispatch:
 
