@@ -26,12 +26,7 @@ jobs:
         # 解压
         unzip "$ZIP_FILE"
 
-        # 获取解压后的目录（假设 zip 里是单个文件夹）
-        DIR=$(unzip -Z1 "$ZIP_FILE" | head -n 1 | cut -d/ -f1)
-        echo "Entering dir: $DIR"
-
-        cd "$DIR"
-
+ 
         # 给脚本权限并执行
         chmod +x uup_download_linux.sh
         sudo ./uup_download_linux.sh
