@@ -11,13 +11,22 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Unzip and run
+    - name: Set Execution Policy
+      shell: pwsh
+      run: |
+        Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
+        Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser -Force
+
+    - name: Unzip
+      shell: pwsh
       run: |
         $zip = Get-ChildItem -Filter *.zip | Select-Object -First 1
         Write-Host "Found zip: $($zip.Name)"
         Expand-Archive -Path $zip.FullName -DestinationPath .
-        .\uup_download_windows.cmd
-      shell: pwsh
+
+    - name: Run
+      shell: cmd
+      run: uup_download_windows.cmd
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@main
