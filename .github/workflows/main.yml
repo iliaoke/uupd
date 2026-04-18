@@ -6,32 +6,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-    - name: Set up 
-      run: |
-        sudo apt update
-        sudo apt install -y tree unzip cabextract wimtools chntpw genisoimage
-
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Unzip and enter folder
+    - name: Unzip and run
       run: |
-
-        # 找到第一个 zip 文件
-        ZIP_FILE=$(ls *.zip | head -n 1)
-        echo "Found zip: $ZIP_FILE"
-
-        # 解压
-        unzip "$ZIP_FILE"
-
- 
-        # 给脚本权限并执行
-        chmod +x uup_download_linux.sh
-        sudo ./uup_download_linux.sh
-
-        tree
+        $zip = Get-ChildItem -Filter *.zip | Select-Object -First 1
+        Write-Host "Found zip: $($zip.Name)"
+        Expand-Archive -Path $zip.FullName -DestinationPath .
+        .\uup_download_windows.cmd
+      shell: pwsh
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@main
@@ -39,4 +25,3 @@ jobs:
         path: |
           **/*.ISO
           **/*.iso
-            
